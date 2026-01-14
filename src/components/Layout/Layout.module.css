@@ -1,0 +1,53 @@
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-md);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.logoIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background-color: white;
+  color: var(--color-primary);
+  border-radius: var(--radius-md);
+  font-weight: 700;
+}
+
+.logoText {
+  letter-spacing: -0.02em;
+}
+
+.main {
+  flex: 1;
+  padding: 1rem;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .main {
+    padding: 1.5rem;
+  }
+}

@@ -49,9 +49,17 @@ export function GoalCard({ goal, progress, onAddProgress, onEdit }: GoalCardProp
     }
   };
 
+  const handleDecrement = (value: number) => {
+    const newValue = Math.max(0, currentProgress - value);
+    // Set progress to the new value (not add, but set absolute)
+    onAddProgress(goal.id, newValue - currentProgress);
+  };
+
   const statusBadgeClass = styles.statusBadge ?? '';
   const progressFillClass = styles.progressFill ?? '';
   const progressOverflowClass = styles.progressOverflow ?? '';
+  const quickAddClass = styles.quickAdd ?? '';
+  const quickSubtractClass = styles.quickSubtract ?? '';
 
   return (
     <div className={styles.card} data-testid="goal-card">
@@ -92,15 +100,27 @@ export function GoalCard({ goal, progress, onAddProgress, onEdit }: GoalCardProp
       )}
 
       <div className={styles.actions}>
+        {/* Decrement buttons */}
+        {currentProgress > 0 && increments.map((increment) => (
+          <button
+            key={`dec-${increment.value}`}
+            className={quickSubtractClass}
+            onClick={() => handleDecrement(increment.value)}
+            disabled={currentProgress < increment.value}
+          >
+            -{increment.label}
+          </button>
+        ))}
+
+        {/* Increment buttons */}
         {increments.map((increment) => (
           <button
-            key={increment.value}
-            className={styles.quickAdd}
+            key={`inc-${increment.value}`}
+            className={quickAddClass}
             onClick={() => onAddProgress(goal.id, increment.value)}
             data-testid={increment.value === 1 || increment.value === 5 ? 'add-progress-button' : undefined}
           >
-            <span className={styles.quickAddIcon}>+</span>
-            <span>{increment.label}</span>
+            +{increment.label}
           </button>
         ))}
       </div>

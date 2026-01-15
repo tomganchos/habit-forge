@@ -53,6 +53,9 @@ function getCountIncrements(target: number): Increment[] {
 function getTimeIncrements(target: number): Increment[] {
   const increments: Increment[] = [];
 
+  // Always show 1 min
+  increments.push({ value: 1, label: '1m' });
+
   // Always show 5 min
   increments.push({ value: 5, label: '5m' });
 

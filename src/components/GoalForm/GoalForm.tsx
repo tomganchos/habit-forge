@@ -19,15 +19,23 @@ export function GoalForm({ goal, onSave, onDelete, onCancel }: GoalFormProps) {
   const [icon, setIcon] = useState(goal?.icon ?? '💪');
   const [unit, setUnit] = useState<GoalUnit>(goal?.unit ?? 'count');
   const [period, setPeriod] = useState<GoalPeriod>(goal?.period ?? 'day');
-  const [target, setTarget] = useState(goal?.target ?? 1);
+  const [targetStr, setTargetStr] = useState(String(goal?.target ?? 1));
   const [durationType, setDurationType] = useState<DurationType>(goal?.duration.type ?? 'forever');
   const [endDate, setEndDate] = useState(goal?.duration.endDate ?? '');
-  const [periods, setPeriods] = useState(goal?.duration.periods ?? 30);
+  const [periodsStr, setPeriodsStr] = useState(String(goal?.duration.periods ?? 30));
+
+  const parsePositiveInt = (value: string, defaultValue: number): number => {
+    const parsed = parseInt(value, 10);
+    return isNaN(parsed) || parsed < 1 ? defaultValue : parsed;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!title.trim()) return;
+
+    const target = parsePositiveInt(targetStr, 1);
+    const periods = parsePositiveInt(periodsStr, 30);
 
     const newGoal: NewGoal = {
       title: title.trim(),
@@ -43,6 +51,16 @@ export function GoalForm({ goal, onSave, onDelete, onCancel }: GoalFormProps) {
     };
 
     onSave(newGoal);
+  };
+
+  const handleTargetBlur = () => {
+    const value = parsePositiveInt(targetStr, 1);
+    setTargetStr(String(value));
+  };
+
+  const handlePeriodsBlur = () => {
+    const value = parsePositiveInt(periodsStr, 1);
+    setPeriodsStr(String(value));
   };
 
   const getPeriodSuffix = () => {
@@ -139,8 +157,9 @@ export function GoalForm({ goal, onSave, onDelete, onCancel }: GoalFormProps) {
             id="goal-target"
             type="number"
             className={styles.input}
-            value={target}
-            onChange={(e) => setTarget(Math.max(1, parseInt(e.target.value, 10) || 1))}
+            value={targetStr}
+            onChange={(e) => setTargetStr(e.target.value)}
+            onBlur={handleTargetBlur}
             min={1}
             required
             data-testid="goal-target-input"
@@ -188,8 +207,9 @@ export function GoalForm({ goal, onSave, onDelete, onCancel }: GoalFormProps) {
               id="goal-periods"
               type="number"
               className={styles.input}
-              value={periods}
-              onChange={(e) => setPeriods(Math.max(1, parseInt(e.target.value, 10) || 1))}
+              value={periodsStr}
+              onChange={(e) => setPeriodsStr(e.target.value)}
+              onBlur={handlePeriodsBlur}
               min={1}
               required
             />

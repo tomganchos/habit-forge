@@ -1,9 +1,18 @@
 import { useState, useEffect } from 'react';
 import { useApp } from '@/store/context';
 import { useTranslation } from '@/i18n';
+import { useTheme } from '@/hooks/useTheme';
 import { Button } from '@/components/Button/Button';
-import type { Language } from '@/types';
+import type { Language, Settings } from '@/types';
 import styles from './SettingsScreen.module.css';
+
+type Theme = Settings['theme'];
+
+const THEMES: { value: Theme; labelKey: 'themeLight' | 'themeDark' | 'themeSystem' }[] = [
+  { value: 'light', labelKey: 'themeLight' },
+  { value: 'dark', labelKey: 'themeDark' },
+  { value: 'system', labelKey: 'themeSystem' },
+];
 
 const LANGUAGES: { code: Language; name: string }[] = [
   { code: 'en', name: 'English' },
@@ -17,6 +26,7 @@ const LANGUAGES: { code: Language; name: string }[] = [
 export function SettingsScreen() {
   const { state, updateSettings } = useApp();
   const { t, language, setLanguage } = useTranslation();
+  const { theme, setTheme } = useTheme();
   const [notificationPermission, setNotificationPermission] = useState<
     NotificationPermission | 'unsupported'
   >('default');
@@ -61,6 +71,10 @@ export function SettingsScreen() {
     setLanguage(e.target.value as Language);
   };
 
+  const handleThemeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setTheme(e.target.value as Theme);
+  };
+
   const getNotificationStatus = () => {
     if (notificationPermission === 'unsupported') {
       return t.settings.notifUnsupported;
@@ -96,6 +110,23 @@ export function SettingsScreen() {
             {LANGUAGES.map((lang) => (
               <option key={lang.code} value={lang.code}>
                 {lang.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>{t.settings.theme}</h2>
+        <div className={styles.setting}>
+          <div className={styles.settingInfo}>
+            <h3 className={styles.settingName}>{t.settings.theme}</h3>
+            <p className={styles.settingDescription}>{t.settings.themeDesc}</p>
+          </div>
+          <select className={styles.languageSelect} value={theme} onChange={handleThemeChange}>
+            {THEMES.map((themeOption) => (
+              <option key={themeOption.value} value={themeOption.value}>
+                {t.settings[themeOption.labelKey]}
               </option>
             ))}
           </select>
@@ -144,9 +175,7 @@ export function SettingsScreen() {
           <p>
             <strong>{t.appName}</strong> {t.settings.version}
           </p>
-          <p className={styles.aboutText}>
-            {t.settings.aboutText}
-          </p>
+          <p className={styles.aboutText}>{t.settings.aboutText}</p>
         </div>
       </div>
 

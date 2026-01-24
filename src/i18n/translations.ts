@@ -51,6 +51,12 @@ export interface Translations {
     create: string;
     cancel: string;
     delete: string;
+    archive: string;
+    deleteConfirmTitle: string;
+    deleteConfirmMessage: string;
+    archiveConfirmTitle: string;
+    archiveConfirmMessage: string;
+    confirm: string;
   };
 
   // Calendar
@@ -107,6 +113,11 @@ export interface Translations {
     enabled: string;
     language: string;
     languageDesc: string;
+    theme: string;
+    themeDesc: string;
+    themeLight: string;
+    themeDark: string;
+    themeSystem: string;
     about: string;
     version: string;
     aboutText: string;
@@ -180,6 +191,14 @@ export const translations: Record<Language, Translations> = {
       create: 'Create',
       cancel: 'Cancel',
       delete: 'Delete',
+      archive: 'Archive',
+      deleteConfirmTitle: 'Delete Goal',
+      deleteConfirmMessage:
+        'Are you sure you want to delete this goal? This will also remove all progress data and cannot be undone.',
+      archiveConfirmTitle: 'Archive Goal',
+      archiveConfirmMessage:
+        'Archive this goal? It will be hidden from the Today view but your progress data will be preserved.',
+      confirm: 'Confirm',
     },
     calendar: {
       title: 'Calendar',
@@ -229,9 +248,15 @@ export const translations: Record<Language, Translations> = {
       enabled: 'Enabled',
       language: 'Language',
       languageDesc: 'Choose your preferred language',
+      theme: 'Theme',
+      themeDesc: 'Choose your preferred color theme',
+      themeLight: 'Light',
+      themeDark: 'Dark',
+      themeSystem: 'System',
       about: 'About',
       version: 'v0.1.0',
-      aboutText: 'Track your habits and build better routines. Your data is stored locally on your device.',
+      aboutText:
+        'Track your habits and build better routines. Your data is stored locally on your device.',
       data: 'Data',
       exportData: 'Export Data',
       exportDataDesc: 'Download your data as JSON',
@@ -297,6 +322,14 @@ export const translations: Record<Language, Translations> = {
       create: 'Создать',
       cancel: 'Отмена',
       delete: 'Удалить',
+      archive: 'Архивировать',
+      deleteConfirmTitle: 'Удалить цель',
+      deleteConfirmMessage:
+        'Вы уверены, что хотите удалить эту цель? Все данные о прогрессе также будут удалены. Это действие нельзя отменить.',
+      archiveConfirmTitle: 'Архивировать цель',
+      archiveConfirmMessage:
+        'Архивировать эту цель? Она будет скрыта из вида "Сегодня", но данные о прогрессе сохранятся.',
+      confirm: 'Подтвердить',
     },
     calendar: {
       title: 'Календарь',
@@ -346,9 +379,15 @@ export const translations: Record<Language, Translations> = {
       enabled: 'Включено',
       language: 'Язык',
       languageDesc: 'Выберите предпочитаемый язык',
+      theme: 'Тема',
+      themeDesc: 'Выберите цветовую тему',
+      themeLight: 'Светлая',
+      themeDark: 'Тёмная',
+      themeSystem: 'Системная',
       about: 'О приложении',
       version: 'v0.1.0',
-      aboutText: 'Отслеживайте привычки и формируйте полезные рутины. Данные хранятся локально на вашем устройстве.',
+      aboutText:
+        'Отслеживайте привычки и формируйте полезные рутины. Данные хранятся локально на вашем устройстве.',
       data: 'Данные',
       exportData: 'Экспорт данных',
       exportDataDesc: 'Скачать данные в формате JSON',
@@ -414,10 +453,19 @@ export const translations: Record<Language, Translations> = {
       create: 'Créer',
       cancel: 'Annuler',
       delete: 'Supprimer',
+      archive: 'Archiver',
+      deleteConfirmTitle: "Supprimer l'objectif",
+      deleteConfirmMessage:
+        'Voulez-vous vraiment supprimer cet objectif ? Toutes les données de progression seront également supprimées. Cette action est irréversible.',
+      archiveConfirmTitle: "Archiver l'objectif",
+      archiveConfirmMessage:
+        "Archiver cet objectif ? Il sera masqué de la vue Aujourd'hui mais vos données de progression seront conservées.",
+      confirm: 'Confirmer',
     },
     calendar: {
       title: 'Calendrier',
-      noGoals: "Pas encore d'objectifs. Créez un objectif pour voir votre calendrier de progression.",
+      noGoals:
+        "Pas encore d'objectifs. Créez un objectif pour voir votre calendrier de progression.",
       selectGoal: 'Sélectionnez un objectif pour voir son calendrier',
       progress: 'Progression',
       progressCount: 'nombre',
@@ -455,7 +503,8 @@ export const translations: Record<Language, Translations> = {
       reminderTime: 'Heure de rappel',
       reminderTimeDesc: 'Quand envoyer les rappels quotidiens',
       notifUnsupported: 'Votre navigateur ne supporte pas les notifications',
-      notifBlocked: 'Les notifications sont bloquées. Veuillez les activer dans les paramètres du navigateur.',
+      notifBlocked:
+        'Les notifications sont bloquées. Veuillez les activer dans les paramètres du navigateur.',
       notifClickToEnable: 'Cliquez pour activer les notifications',
       notifEnabled: 'Les notifications sont activées',
       notifDisabled: 'Les notifications sont désactivées',
@@ -463,9 +512,15 @@ export const translations: Record<Language, Translations> = {
       enabled: 'Activé',
       language: 'Langue',
       languageDesc: 'Choisissez votre langue préférée',
+      theme: 'Thème',
+      themeDesc: 'Choisissez votre thème de couleur préféré',
+      themeLight: 'Clair',
+      themeDark: 'Sombre',
+      themeSystem: 'Système',
       about: 'À propos',
       version: 'v0.1.0',
-      aboutText: 'Suivez vos habitudes et construisez de meilleures routines. Vos données sont stockées localement.',
+      aboutText:
+        'Suivez vos habitudes et construisez de meilleures routines. Vos données sont stockées localement.',
       data: 'Données',
       exportData: 'Exporter les données',
       exportDataDesc: 'Télécharger vos données en JSON',
@@ -531,6 +586,14 @@ export const translations: Record<Language, Translations> = {
       create: 'Crea',
       cancel: 'Annulla',
       delete: 'Elimina',
+      archive: 'Archivia',
+      deleteConfirmTitle: 'Elimina obiettivo',
+      deleteConfirmMessage:
+        'Sei sicuro di voler eliminare questo obiettivo? Tutti i dati di progresso verranno eliminati. Questa azione non può essere annullata.',
+      archiveConfirmTitle: 'Archivia obiettivo',
+      archiveConfirmMessage:
+        'Archiviare questo obiettivo? Verrà nascosto dalla vista Oggi ma i tuoi dati di progresso saranno conservati.',
+      confirm: 'Conferma',
     },
     calendar: {
       title: 'Calendario',
@@ -580,9 +643,15 @@ export const translations: Record<Language, Translations> = {
       enabled: 'Abilitato',
       language: 'Lingua',
       languageDesc: 'Scegli la tua lingua preferita',
+      theme: 'Tema',
+      themeDesc: 'Scegli il tuo tema colore preferito',
+      themeLight: 'Chiaro',
+      themeDark: 'Scuro',
+      themeSystem: 'Sistema',
       about: 'Info',
       version: 'v0.1.0',
-      aboutText: 'Traccia le tue abitudini e costruisci routine migliori. I tuoi dati sono memorizzati localmente.',
+      aboutText:
+        'Traccia le tue abitudini e costruisci routine migliori. I tuoi dati sono memorizzati localmente.',
       data: 'Dati',
       exportData: 'Esporta dati',
       exportDataDesc: 'Scarica i tuoi dati come JSON',
@@ -648,6 +717,14 @@ export const translations: Record<Language, Translations> = {
       create: 'Loo',
       cancel: 'Tühista',
       delete: 'Kustuta',
+      archive: 'Arhiveeri',
+      deleteConfirmTitle: 'Kustuta eesmärk',
+      deleteConfirmMessage:
+        'Kas oled kindel, et soovid selle eesmärgi kustutada? Kõik eduandmed kustutatakse samuti. Seda toimingut ei saa tagasi võtta.',
+      archiveConfirmTitle: 'Arhiveeri eesmärk',
+      archiveConfirmMessage:
+        'Arhiveerida see eesmärk? See peidetakse Täna vaatest, kuid sinu eduandmed säilitatakse.',
+      confirm: 'Kinnita',
     },
     calendar: {
       title: 'Kalender',
@@ -697,9 +774,15 @@ export const translations: Record<Language, Translations> = {
       enabled: 'Lubatud',
       language: 'Keel',
       languageDesc: 'Vali eelistatud keel',
+      theme: 'Teema',
+      themeDesc: 'Vali eelistatud värviteema',
+      themeLight: 'Hele',
+      themeDark: 'Tume',
+      themeSystem: 'Süsteem',
       about: 'Info',
       version: 'v0.1.0',
-      aboutText: 'Jälgi oma harjumusi ja ehita paremaid rutiine. Sinu andmed salvestatakse lokaalselt.',
+      aboutText:
+        'Jälgi oma harjumusi ja ehita paremaid rutiine. Sinu andmed salvestatakse lokaalselt.',
       data: 'Andmed',
       exportData: 'Ekspordi andmed',
       exportDataDesc: 'Laadi oma andmed alla JSON-ina',
@@ -765,6 +848,14 @@ export const translations: Record<Language, Translations> = {
       create: 'Crear',
       cancel: 'Cancelar',
       delete: 'Eliminar',
+      archive: 'Archivar',
+      deleteConfirmTitle: 'Eliminar meta',
+      deleteConfirmMessage:
+        'Estas seguro de que quieres eliminar esta meta? Todos los datos de progreso tambien se eliminaran. Esta accion no se puede deshacer.',
+      archiveConfirmTitle: 'Archivar meta',
+      archiveConfirmMessage:
+        'Archivar esta meta? Se ocultara de la vista de Hoy pero tus datos de progreso se conservaran.',
+      confirm: 'Confirmar',
     },
     calendar: {
       title: 'Calendario',
@@ -806,7 +897,8 @@ export const translations: Record<Language, Translations> = {
       reminderTime: 'Hora del recordatorio',
       reminderTimeDesc: 'Cuándo enviar recordatorios diarios',
       notifUnsupported: 'Tu navegador no soporta notificaciones',
-      notifBlocked: 'Las notificaciones están bloqueadas. Por favor, habilítalas en los ajustes del navegador.',
+      notifBlocked:
+        'Las notificaciones están bloqueadas. Por favor, habilítalas en los ajustes del navegador.',
       notifClickToEnable: 'Haz clic para habilitar notificaciones',
       notifEnabled: 'Las notificaciones están habilitadas',
       notifDisabled: 'Las notificaciones están deshabilitadas',
@@ -814,9 +906,15 @@ export const translations: Record<Language, Translations> = {
       enabled: 'Habilitado',
       language: 'Idioma',
       languageDesc: 'Elige tu idioma preferido',
+      theme: 'Tema',
+      themeDesc: 'Elige tu tema de color preferido',
+      themeLight: 'Claro',
+      themeDark: 'Oscuro',
+      themeSystem: 'Sistema',
       about: 'Acerca de',
       version: 'v0.1.0',
-      aboutText: 'Rastrea tus hábitos y construye mejores rutinas. Tus datos se almacenan localmente.',
+      aboutText:
+        'Rastrea tus hábitos y construye mejores rutinas. Tus datos se almacenan localmente.',
       data: 'Datos',
       exportData: 'Exportar datos',
       exportDataDesc: 'Descarga tus datos como JSON',

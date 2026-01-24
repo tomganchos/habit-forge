@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { AppProvider, useApp } from '@/store/context';
 import { I18nProvider } from '@/i18n';
+import { useTheme } from '@/hooks/useTheme';
 import { Layout } from '@/components/Layout/Layout';
 import { Navigation, type Screen } from '@/components/Navigation/Navigation';
 import { AchievementCelebration } from '@/components/AchievementCelebration/AchievementCelebration';
@@ -8,6 +9,13 @@ import { TodayScreen } from '@/screens/TodayScreen/TodayScreen';
 import { CalendarScreen } from '@/screens/CalendarScreen/CalendarScreen';
 import { AchievementsScreen } from '@/screens/AchievementsScreen/AchievementsScreen';
 import { SettingsScreen } from '@/screens/SettingsScreen/SettingsScreen';
+
+// Component that initializes theme on app mount
+function ThemeInitializer({ children }: { children: React.ReactNode }) {
+  // This hook applies the theme to the document
+  useTheme();
+  return <>{children}</>;
+}
 
 function AppContent() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('today');
@@ -56,7 +64,9 @@ export function App() {
   return (
     <AppProvider>
       <I18nProvider>
-        <AppContent />
+        <ThemeInitializer>
+          <AppContent />
+        </ThemeInitializer>
       </I18nProvider>
     </AppProvider>
   );

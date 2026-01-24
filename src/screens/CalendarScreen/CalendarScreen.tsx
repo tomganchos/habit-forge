@@ -85,7 +85,11 @@ export function CalendarScreen() {
                 </p>
                 <div className={styles.editField}>
                   <label className={styles.editLabel}>
-                    {t.calendar.progress} ({selectedGoal.unit === 'time' ? t.calendar.progressMinutes : t.calendar.progressCount})
+                    {t.calendar.progress} (
+                    {selectedGoal.unit === 'time'
+                      ? t.calendar.progressMinutes
+                      : t.calendar.progressCount}
+                    )
                   </label>
                   <input
                     type="number"

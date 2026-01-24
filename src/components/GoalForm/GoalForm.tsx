@@ -151,7 +151,8 @@ export function GoalForm({ goal, onSave, onDelete, onCancel }: GoalFormProps) {
 
         <div className={styles.field}>
           <label className={styles.label} htmlFor="goal-target">
-            {t.goalForm.target} ({unit === 'time' ? t.goalForm.targetMinutes : t.goalForm.targetCount})
+            {t.goalForm.target} (
+            {unit === 'time' ? t.goalForm.targetMinutes : t.goalForm.targetCount})
           </label>
           <input
             id="goal-target"

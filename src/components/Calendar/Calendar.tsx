@@ -1,12 +1,7 @@
 import { useState } from 'react';
 import type { Goal, ProgressEntry } from '@/types';
 import { useTranslation } from '@/i18n';
-import {
-  getCalendarGrid,
-  formatMonthYear,
-  getToday,
-  parseDate,
-} from '@/utils/date';
+import { getCalendarGrid, formatMonthYear, getToday, parseDate } from '@/utils/date';
 import { getDayStatus } from '@/utils/progress';
 import { Button } from '@/components/Button/Button';
 import styles from './Calendar.module.css';

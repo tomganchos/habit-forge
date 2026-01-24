@@ -19,18 +19,10 @@ export function getSmartIncrements(target: number, unit: GoalUnit): Increment[] 
 function getCountIncrements(target: number): Increment[] {
   const increments: Increment[] = [];
 
-  // Always show 1
+  // Always show 1, 5, and 10 for quick-add
   increments.push({ value: 1, label: '1' });
-
-  // Show 5 if target >= 10
-  if (target >= 10) {
-    increments.push({ value: 5, label: '5' });
-  }
-
-  // Show 10 if target >= 25
-  if (target >= 25) {
-    increments.push({ value: 10, label: '10' });
-  }
+  increments.push({ value: 5, label: '5' });
+  increments.push({ value: 10, label: '10' });
 
   // Show 25 if target >= 50
   if (target >= 50) {
@@ -53,21 +45,10 @@ function getCountIncrements(target: number): Increment[] {
 function getTimeIncrements(target: number): Increment[] {
   const increments: Increment[] = [];
 
-  // Always show 1 min
-  increments.push({ value: 1, label: '1m' });
-
-  // Always show 5 min
+  // Always show 5min, 15min, and 30min for quick-add
   increments.push({ value: 5, label: '5m' });
-
-  // Show 15 min if target >= 30
-  if (target >= 30) {
-    increments.push({ value: 15, label: '15m' });
-  }
-
-  // Show 30 min if target >= 60
-  if (target >= 60) {
-    increments.push({ value: 30, label: '30m' });
-  }
+  increments.push({ value: 15, label: '15m' });
+  increments.push({ value: 30, label: '30m' });
 
   // Show 1 hour if target >= 90
   if (target >= 90) {

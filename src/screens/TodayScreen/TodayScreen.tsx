@@ -8,8 +8,8 @@ import { Button } from '@/components/Button/Button';
 import { getToday } from '@/utils/date';
 import styles from './TodayScreen.module.css';
 
-export function TodayScreen() {
-  const { state, addGoal, updateGoal, deleteGoal, setProgress } = useApp();
+export function TodayScreen(): React.JSX.Element {
+  const { state, addGoal, updateGoal, deleteGoal, archiveGoal, setProgress } = useApp();
   const { t } = useTranslation();
   const [showForm, setShowForm] = useState(false);
   const [editingGoal, setEditingGoal] = useState<Goal | null>(null);
@@ -17,13 +17,13 @@ export function TodayScreen() {
   const activeGoals = state.goals.filter((g) => !g.archived);
   const today = getToday();
 
-  const handleAddProgress = (goalId: string, value: number) => {
+  const handleAddProgress = (goalId: string, value: number): void => {
     const currentValue =
       state.progress.find((p) => p.goalId === goalId && p.date === today)?.value ?? 0;
     setProgress(goalId, today, currentValue + value);
   };
 
-  const handleSaveGoal = (goalData: NewGoal) => {
+  const handleSaveGoal = (goalData: NewGoal): void => {
     if (editingGoal) {
       updateGoal(editingGoal.id, goalData);
     } else {
@@ -33,12 +33,16 @@ export function TodayScreen() {
     setEditingGoal(null);
   };
 
-  const handleEditGoal = (goal: Goal) => {
+  const handleEditGoal = (goal: Goal): void => {
     setEditingGoal(goal);
     setShowForm(true);
   };
 
-  const handleDeleteGoal = () => {
+  const handleDeleteGoal = (goalId: string): void => {
+    deleteGoal(goalId);
+  };
+
+  const handleDeleteGoalFromForm = (): void => {
     if (editingGoal) {
       deleteGoal(editingGoal.id);
       setShowForm(false);
@@ -46,7 +50,11 @@ export function TodayScreen() {
     }
   };
 
-  const handleCloseForm = () => {
+  const handleArchiveGoal = (goalId: string): void => {
+    archiveGoal(goalId);
+  };
+
+  const handleCloseForm = (): void => {
     setShowForm(false);
     setEditingGoal(null);
   };
@@ -74,6 +82,8 @@ export function TodayScreen() {
               progress={state.progress}
               onAddProgress={handleAddProgress}
               onEdit={handleEditGoal}
+              onDelete={handleDeleteGoal}
+              onArchive={handleArchiveGoal}
             />
           ))}
         </div>
@@ -83,7 +93,7 @@ export function TodayScreen() {
         <GoalForm
           goal={editingGoal ?? undefined}
           onSave={handleSaveGoal}
-          onDelete={editingGoal ? handleDeleteGoal : undefined}
+          onDelete={editingGoal ? handleDeleteGoalFromForm : undefined}
           onCancel={handleCloseForm}
         />
       )}

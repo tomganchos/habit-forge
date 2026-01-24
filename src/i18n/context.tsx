@@ -22,9 +22,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <I18nContext.Provider value={{ t, language, setLanguage }}>
-      {children}
-    </I18nContext.Provider>
+    <I18nContext.Provider value={{ t, language, setLanguage }}>{children}</I18nContext.Provider>
   );
 }
 

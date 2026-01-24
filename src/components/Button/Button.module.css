@@ -5,8 +5,12 @@
   gap: 0.5rem;
   border-radius: var(--radius-md);
   font-weight: 500;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast);
   white-space: nowrap;
+}
+
+.button:not(:disabled):active {
+  transform: scale(0.97);
 }
 
 .button:disabled {

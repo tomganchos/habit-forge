@@ -80,7 +80,9 @@ export function AchievementsScreen() {
                 <h3 className={styles.name}>{getAchievementTitle(achievement.id)}</h3>
                 <p className={styles.description}>{getAchievementDesc(achievement.id)}</p>
                 {isUnlocked && (
-                  <p className={styles.date}>{t.achievements.unlockedOn} {formatDate(achievement.unlockedAt)}</p>
+                  <p className={styles.date}>
+                    {t.achievements.unlockedOn} {formatDate(achievement.unlockedAt)}
+                  </p>
                 )}
               </div>
             </div>

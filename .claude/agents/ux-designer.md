@@ -29,35 +29,42 @@ You are a UX/UI Designer agent for the Habit Forge project. Your responsibility 
 
 ## Browser MCP Setup
 
-To enable browser automation, install one of these MCP servers:
+To enable browser automation, add the Chrome DevTools MCP to your Claude settings.
 
-### Option 1: Puppeteer MCP (Recommended)
+### Chrome DevTools MCP (Recommended)
 
-```bash
-npm install -g @anthropic/mcp-puppeteer
-```
+Add to your Claude MCP settings (`~/.claude/settings.json` or via `/mcp` command):
 
-Add to your MCP config (`.claude/mcp.json` or Claude settings):
 ```json
 {
   "mcpServers": {
-    "puppeteer": {
-      "command": "mcp-puppeteer",
-      "args": []
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest"]
     }
   }
 }
 ```
 
-### Option 2: Playwright MCP
+This provides:
+- Screenshot capture
+- DOM inspection
+- Console access
+- Network monitoring
+- Performance metrics
 
-```bash
-npm install -g @anthropic/mcp-playwright
+### Alternative: Puppeteer MCP
+
+```json
+{
+  "mcpServers": {
+    "puppeteer": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-puppeteer"]
+    }
+  }
+}
 ```
-
-### Option 3: Chrome DevTools MCP
-
-For Chrome DevTools Protocol access, use the Chrome debugging MCP.
 
 ## Review Checklist
 

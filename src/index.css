@@ -2,6 +2,7 @@
   --color-primary: #6366f1;
   --color-primary-hover: #4f46e5;
   --color-primary-light: #e0e7ff;
+  --color-primary-dark: #4338ca;
 
   --color-success: #22c55e;
   --color-warning: #eab308;
@@ -28,26 +29,61 @@
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-card-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  --transition-fast: 150ms ease;
+  --transition-normal: 200ms ease;
+  --transition-slow: 300ms ease;
+
+  --gradient-header: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --gradient-header-dark: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
 
   --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
+/* Dark theme - applied when user selects "system" and OS is dark, or when user selects "dark" */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
     --color-bg: #111827;
     --color-bg-secondary: #1f2937;
     --color-bg-tertiary: #374151;
 
     --color-text: #f9fafb;
-    --color-text-secondary: #9ca3af;
-    --color-text-tertiary: #6b7280;
+    --color-text-secondary: #d1d5db;
+    --color-text-tertiary: #9ca3af;
 
-    --color-border: #374151;
-    --color-border-hover: #4b5563;
+    --color-border: #4b5563;
+    --color-border-hover: #6b7280;
 
     --color-primary-light: #312e81;
     --color-danger-light: #7f1d1d;
+
+    --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3);
+    --shadow-card-hover: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+    --gradient-header: var(--gradient-header-dark);
   }
+}
+
+/* Dark theme - explicitly set by user */
+:root[data-theme='dark'] {
+  --color-bg: #111827;
+  --color-bg-secondary: #1f2937;
+  --color-bg-tertiary: #374151;
+
+  --color-text: #f9fafb;
+  --color-text-secondary: #d1d5db;
+  --color-text-tertiary: #9ca3af;
+
+  --color-border: #4b5563;
+  --color-border-hover: #6b7280;
+
+  --color-primary-light: #312e81;
+  --color-danger-light: #7f1d1d;
+
+  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3);
+  --shadow-card-hover: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+  --gradient-header: var(--gradient-header-dark);
 }
 
 *,
@@ -143,26 +179,48 @@ a:hover {
   color: #5b21b6;
 }
 
+/* Dark mode status colors - when system is dark and user hasn't selected light */
 @media (prefers-color-scheme: dark) {
-  .status-red {
+  :root:not([data-theme='light']) .status-red {
     background-color: #7f1d1d;
     color: #fecaca;
   }
 
-  .status-yellow {
+  :root:not([data-theme='light']) .status-yellow {
     background-color: #713f12;
     color: #fef08a;
   }
 
-  .status-green {
+  :root:not([data-theme='light']) .status-green {
     background-color: #14532d;
     color: #bbf7d0;
   }
 
-  .status-special {
+  :root:not([data-theme='light']) .status-special {
     background-color: #4c1d95;
     color: #ddd6fe;
   }
+}
+
+/* Dark mode status colors - explicitly set by user */
+:root[data-theme='dark'] .status-red {
+  background-color: #7f1d1d;
+  color: #fecaca;
+}
+
+:root[data-theme='dark'] .status-yellow {
+  background-color: #713f12;
+  color: #fef08a;
+}
+
+:root[data-theme='dark'] .status-green {
+  background-color: #14532d;
+  color: #bbf7d0;
+}
+
+:root[data-theme='dark'] .status-special {
+  background-color: #4c1d95;
+  color: #ddd6fe;
 }
 
 /* Achievement celebration animation */
